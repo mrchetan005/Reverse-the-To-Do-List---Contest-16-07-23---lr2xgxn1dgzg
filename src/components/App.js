@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import '../styles/App.css';
 
-function ToDo() {
+function ToDo(props) {
+  const { id, createdAt} = props;
   return (<tr>
     <td>
-      <p>id</p>
+      <p>{id}</p>
     </td>
     <td>
       <input />
     </td>
     <td>
-      <p>createdAt</p>
+      <p>{createdAt}</p>
     </td>
   </tr>)
 }
@@ -27,9 +28,16 @@ function App() {
 
   return (
     <div id="main">
-      <button>Reverse</button>
+      <button onClick={() => {
+        setTodos([...todos].reverse());
+      }}>Reverse</button>
       <table>
         <tbody>
+    {
+      todos.map((todo)=>(
+        <ToDo id={todo.id} createdAt={todo.createdAt}/>
+      ))
+    }
         </tbody>
       </table>
     </div>
